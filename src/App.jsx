@@ -15,6 +15,22 @@ function App(){
           </article>
         </section>
       </div>
+
+      <section className="estrutura-card">
+        <h1>Criando Mixins</h1>
+        <div>
+          <article>
+            <p>
+              Lorem 
+            </p>
+          </article>
+          <article>
+            <p>
+              Lorem
+            </p>
+          </article>
+        </div>
+      </section>
     </>
   )
 }

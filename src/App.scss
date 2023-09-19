@@ -48,3 +48,43 @@ $cor-link: purple;
             }
     }
 }
+
+//Criando mixins
+@mixin tituloTipografia{
+    font-size: 22px;
+    font-weight: bold;
+    font-family: monospace;
+    color: pink;
+
+    .estrutura-card{
+        h1{
+            @include tituloTipografia;
+            padding: 15px;
+        }
+    }
+}
+
+@mixin circulo($tamanho){
+    width: $tamanho;
+    height: $tamanho;
+    border-radius: $tamanho / 2;
+    overflow: hidden;
+
+    div{
+        display: flex;
+
+        @media (max-width:578px){
+            flex-wrap: wrap;
+        }
+        
+        article{
+            @include circulo(150px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: pink;
+            margin-right: 20px;
+        }
+    }
+}
+
