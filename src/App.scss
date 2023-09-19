@@ -1,27 +1,67 @@
-$font-principal: Arial, Helvetica, sans-serif;
-$cor-fundo: palevioletred;
-$texto-padrao: aliceblue;
-$cor-link: purple;
+@import "./variavel";
+
+@mixin tituloPadrao{
+    font-size: 22px;
+    font-weight: bold;
+    font-family: monospace;
+    color: rgba(255, 29, 123, 0.726);
+}
+
+@mixin circulo($tamanho){
+    width: $tamanho;
+    height: $tamanho;
+    border-radius: $tamanho / 2;
+    overflow: hidden;
+}
+
+@function cor-fundo(){
+    @return $cor-hover;
+}
+
+
+$font-principal: Arial,Helvetica, sans-serif;
+$cor-fundo: rgba(255, 29, 123, 0.726);
+$texto-padrao: #fff;
+$cor-link: rgb(252, 207, 215);
+
 
 *{
     margin: 0;
     padding: 0;
     font-family: $font-principal;
+    background: cor-fundo();
+}
+
+.text-shadow{
+    text-shadow: 2px 1px 1px pink;
+}
+
+.border-shadow{
+    border: 2px solid pink;
+    box-shadow: 2px 2px 2px rgb(255, 52, 120);
 }
 
 .container{
     max-width: 950px;
     margin: 20px;
     padding: 20px;
-    background-color: $cor-fundo;
+    background: $cor-fundo;
 
     .estrutura{
+        display: flex;
+
+        @media (max-width: 560px) {
+            flex-wrap: wrap;
+        }
+
         .box{
             max-width: 400px;
             border-radius: 5px;
             margin-right: 25px;
-            border: 1px solid pink;
-        }
+            border: 1px solid rgb(255, 224, 229);
+            margin-bottom: 20px;
+            
+
             h1{
                 color: $texto-padrao;
                 padding: 15px;
@@ -39,52 +79,44 @@ $cor-link: purple;
             a{
                 text-decoration: none;
                 color: $cor-link;
-                padding: 15px;
                 display: inline-block;
+                padding: 15px;
 
-                    &:hover{
-                        text-decoration: underline;
-                    }
+                &:hover{
+                    text-decoration: underline;
+
+                }
             }
-    }
-}
 
-//Criando mixins
-@mixin tituloTipografia{
-    font-size: 22px;
-    font-weight: bold;
-    font-family: monospace;
-    color: pink;
-
-    .estrutura-card{
-        h1{
-            @include tituloTipografia;
-            padding: 15px;
         }
     }
 }
 
-@mixin circulo($tamanho){
-    width: $tamanho;
-    height: $tamanho;
-    border-radius: $tamanho / 2;
-    overflow: hidden;
+.estrutura-card {
+    h1 {
+        padding: 15px;
 
-    div{
-        display: flex;
+        @include tituloPadrao;
 
-        @media (max-width:578px){
+        @extend .text-shadow;
+    }
+    div {
+
+        @media (max-width: 560px) {
             flex-wrap: wrap;
         }
-        
-        article{
+
+        article {
             @include circulo(150px);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: pink;
-            margin-right: 20px;
-        }
-    }
-}
+            margin-bottom: 20px;
+            display: inline-flex;
+            margin-right: 15px;
+            background: rgb(255, 114, 161);
 
+            @extend .border-shadow;
+        }
+    }    
+}
